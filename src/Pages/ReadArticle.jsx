@@ -47,7 +47,7 @@ const ReadArticle = () => {
           </div>
         </div>
       </div>
-      <article className="w-full mx-auto py-16 leading-9 font-light text-justify lg:py-24 lg:w-[65%]">
+      <article className="w-full mx-auto py-10 leading-9 font-light text-justify lg:py-24 lg:w-[65%]">
         <p>{post && post.text}</p>
       </article>
     </main>
