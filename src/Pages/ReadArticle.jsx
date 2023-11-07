@@ -20,8 +20,8 @@ const ReadArticle = () => {
   const post = Stories.find((post) => post.id == params.id);
 
   return (
-    <main className="container mx-auto px-5 mt-16">
-      <div className="grid grid-cols-1 gap-16 py-20 items-center lg:grid-cols-2">
+    <div className="container mx-auto px-5 mt-16">
+      <div className="grid grid-cols-1 gap-16 py-10 items-center lg:grid-cols-2">
         <img src={post && post.img} />
         <div className="flex flex-col gap-3 lg:px-16">
           <p className="capitalize font-bold text-2xl lg:text-4xl">
@@ -31,7 +31,7 @@ const ReadArticle = () => {
             <span>by Taylor Louis in Community</span>
             <p className="text-sm text-neutral-600">{post && post.published}</p>
           </div>
-          <div className="flex flex-wrap gap-8">
+          <div className="flex flex-wrap gap-3 lg:gap-8">
             {icons.map((icon, index) => (
               <div
                 className="flex gap-2 border rounded-full py-1 px-5"
@@ -47,10 +47,10 @@ const ReadArticle = () => {
           </div>
         </div>
       </div>
-      <article className="w-full mx-auto py-10 leading-9 font-light text-justify lg:py-24 lg:w-[65%]">
+      <article className="w-full mx-auto pb-10 leading-9 font-light text-justify lg:pt-5 lg:pb-10 lg:w-[65%]">
         <p>{post && post.text}</p>
       </article>
-    </main>
+    </div>
   );
 };
 
