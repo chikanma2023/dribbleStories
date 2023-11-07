@@ -1,5 +1,5 @@
-import BlogPost from "./Child/BlogPost";
-import BlogCategories from "./Child/BlogCategories";
+import BlogPost from "./atoms/BlogPost";
+import BlogCategories from "./atoms/BlogCategories";
 import banner from "../assets/images/dribbleBanner.png";
 
 const Hero = () => {

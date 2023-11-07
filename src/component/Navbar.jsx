@@ -5,7 +5,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
-import { NavLinks } from "./Child/NavLinks";
+import { NavLinks } from "./atoms/NavLinks";
 
 const Navbar = () => {
   const navRef = useRef(null);
