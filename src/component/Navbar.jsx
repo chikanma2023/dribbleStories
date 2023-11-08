@@ -14,10 +14,10 @@ const Navbar = () => {
   const toggleMenu = () => {
     if (!toggle) {
       setToggle(true);
-      navRef.current.classList.remove("-left-96");
+      navRef.current.classList.remove("-left[-100%]");
     } else {
       setToggle(false);
-      navRef.current.classList.add("-left-96");
+      navRef.current.classList.add("-left[-100%]");
     }
   };
 
@@ -38,7 +38,7 @@ const Navbar = () => {
         <MagnifyingGlassIcon className="w-5 h-5 text-neutral-500" />
         <div
           ref={navRef}
-          className="absolute w-full -left-96 top-14 px-5 py-10 border-t bg-white flex flex-col gap-5"
+          className="absolute w-full -left[-100%] top-14 px-5 py-10 border-t bg-white flex flex-col gap-5"
         >
           {NavLinks.map((page) => (
             <Link
