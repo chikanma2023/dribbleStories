@@ -1,6 +1,5 @@
-import BlogPost from "./atoms/BlogPost";
-import BlogCategories from "./atoms/BlogCategories";
-import banner from "../assets/images/dribbleBanner.png";
+import { NewsCard, BlogCategories } from "../index";
+import banner from "../../assets/images/dribbleBanner.png";
 
 const Hero = () => {
   const titleStyles = "font-extrabold font-sans text-2xl leading-8 lg:text-6xl";
@@ -11,7 +10,7 @@ const Hero = () => {
         <p className={titleStyles}>The Dribbble Blog</p>
       </div>
       <div className="w-full flex justify-between">
-        <BlogPost
+        <NewsCard
           image={banner}
           publishedDate="SEP 19, 2023"
           title="The Ultimate Guide to Website Portfolio Templates That Book More

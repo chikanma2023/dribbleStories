@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Stories } from "./Stories";
+import { Stories } from "../Stories";
 
 const Posts = () => {
   return (

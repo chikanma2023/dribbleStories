@@ -11,7 +11,7 @@ const Categories = [
   { href: "", label: "community" },
 ];
 
-const BlogCategories = () => {
+const Index = () => {
   return (
     <div
       className="
@@ -48,4 +48,4 @@ const BlogCategories = () => {
   );
 };
 
-export default BlogCategories;
+export default Index;

@@ -1,4 +1,4 @@
-const BlogPost = ({ publishedDate, title, image }) => {
+const Index = ({ publishedDate, title, image }) => {
   return (
     <div className="w-full flex flex-col gap-10 my-14 lg:w-2/3">
       <article>
@@ -12,4 +12,4 @@ const BlogPost = ({ publishedDate, title, image }) => {
   );
 };
 
-export default BlogPost;
+export default Index;

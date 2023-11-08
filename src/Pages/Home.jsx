@@ -1,5 +1,4 @@
-import Hero from "../component/Hero";
-import Posts from "../component/Posts";
+import { Hero, Posts } from "../component/index";
 
 const Home = () => {
   return (

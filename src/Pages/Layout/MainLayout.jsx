@@ -1,17 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../../component/Navbar";
-import Footer from "../../component/Footer";
+import { Navbar, Footer } from "../../component/index";
 
 const MainLayout = ({ children }) => {
   return (
-    <>
-      <section className="w-screen">
-        <Navbar />
-        {children}
-        <Outlet />
-        <Footer />
-      </section>
-    </>
+    <div className="w-screen">
+      <Navbar />
+      {children}
+      <Outlet />
+      <Footer />
+    </div>
   );
 };
 

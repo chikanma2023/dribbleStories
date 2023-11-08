@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
 import MainLayout from "./Pages/Layout/MainLayout";
-import ReadArticle from "./Pages/ReadArticle";
+import { Home, ReadArticle } from "./component/index";
 
 const App = () => {
   return (
