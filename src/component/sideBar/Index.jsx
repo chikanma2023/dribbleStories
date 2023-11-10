@@ -16,8 +16,8 @@ const links = [
 const Index = ({ UseRef, onclick }) => {
   return (
     <div ref={UseRef} className="hidden text-sm  lg:block z-50">
-      <div className="fixed bg-white h-[90%] p-5 w-full lg:w-[18%] rounded-s-2xl">
-        <b className="text-blue-500 text-2xl">Dashboard</b>
+      <div className="fixed top-[70px] lg:top-auto bg-white h-[90%] p-5 w-full lg:w-[18%] rounded-s-2xl">
+        <b className="text-blue-700 text-2xl">Dashboard</b>
         <div className="flex flex-col gap-6 capitalize hover:[&_a]:text-blue-500 pt-20">
           {links.map((link, index) => (
             <Link

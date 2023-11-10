@@ -182,7 +182,7 @@ const Index = () => {
     },
   ];
   return (
-    <div className="bg-white p-10 mt-5 h-[60%]">
+    <div className="bg-white p-10 mt-1 h-[60%]">
       <PostCard articles={posts} />
     </div>
   );
