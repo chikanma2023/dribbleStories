@@ -1,71 +1,125 @@
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import axios from "axios";
+import {
+  HandleCategory,
+  HandleImagePreview,
+  img_url,
+} from "../../component/index";
+import { proxy, Spinner } from "../../component/index";
 
 const Index = () => {
-  const quillRef = useRef();
-  const [file, setFile] = useState();
-  const [value, setValue] = useState();
+  const location = useLocation();
+  const navigation = useNavigate();
+  const [isLoading, setIsLoading] = useState();
+  const [error, setError] = useState();
 
+  // Find post to update using the id
+  const post_to_update = location ? location.state : "";
+
+  const [title, setTitle] = useState(post_to_update && post_to_update.title);
+  const [category, setCategory] = useState(
+    post_to_update && post_to_update.category
+  );
+  const [text, setText] = useState(post_to_update && post_to_update.text);
+  const [img, setImg] = useState();
+  const [imgPreviewurl, setImgPreview] = useState(
+    post_to_update && img_url(post_to_update.imgId)
+  );
+
+  // Combine text and Images
   const formdata = new FormData();
-  formdata.append("file", file);
-
-  const sendFile = async () => {
-    const response = await axios.post(
-      "http://localhost:5000/api/createpost",
-      formdata
-    );
-
-    if (response) console.log(response);
-  };
-
-  // "http://localhost:5000/api/createpost";
+  formdata.append("title", title);
+  formdata.append("category", category);
+  formdata.append("text", text);
+  formdata.append("file", img);
+  // For editing
+  formdata.append("id", post_to_update && post_to_update.id);
+  formdata.append("imgId", post_to_update && post_to_update.imgId);
 
   const modules = {
     toolbar: {
       container: [
         [{ header: [1, 2, false] }],
         ["bold", "italic", "underline"],
-        ["image", "code-block"],
+        ["code-block"],
       ],
     },
   };
 
+  // Preview image function
+  const handlePreview = (event) => {
+    if (event) {
+      const image = event.target.files[0];
+      setImg(image);
+      setImgPreview(URL.createObjectURL(image));
+    }
+  };
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    let response;
+    if (location.state) {
+      // Update post
+      response = await axios.put(`${proxy}/update`, formdata);
+      if (response.data.success) {
+        navigation("/dashboard");
+      }
+      setIsLoading(false);
+      if (response.data.error) return alert(response.data.error);
+    } else {
+      // Create Post
+      response = await axios.post(`${proxy}/create`, formdata);
+      if (response.data.success) {
+        // Clear input Fields
+        setTitle("");
+        setText("");
+        setCategory("");
+        setImgPreview("");
+        setImg("");
+        setIsLoading(false);
+        alert(response.data.success);
+      }
+      if (response.data.error) return alert(response.data.error);
+    }
+  };
+
   return (
-    <div className="flex flex-col justify-between text-xs my-5 bg-white  h-[76vh] p-5 lg:p-10">
-      <form className="flex flex-col gap-10">
-        <div className="flex gap-3">
-          <input
-            type="file"
-            className="w-1/2 p-3 border focus:outline-none"
-            placeholder="Title"
-            onChange={(event) => setFile(event.target.files[0])}
-          />
-          <select className="outline-none outline:outline-0 bg-transparent px-3 py-2 rounded-full cursor-pointer">
-            <option value="">Category</option>
-            <option value="">Breaking</option>
-            <option value="">Politics</option>
-            <option value="">Sport</option>
-            <option value="">Trending</option>
-          </select>
-        </div>
+    <div
+      className="
+        flexflex-col justify-between text-xs p-5 lg:p-10 border border-y-0 border-l-neutral-700 overflow-y-scroll h-[90vh] lg:h-[79vh]"
+    >
+      <form className="flex flex-col gap-5">
+        <HandleImagePreview
+          img={imgPreviewurl || ""}
+          onchange={(event) => handlePreview(event)}
+        />
+        <HandleCategory
+          value={title || ""}
+          defaultValue={category}
+          onchange={(event) => setTitle(event.target.value)}
+          selectOption={(event) => setCategory(event.target.value)}
+        />
+
         <ReactQuill
+          value={text}
           placeholder="Write post content here"
-          onChange={(event) => setValue(event)}
+          onChange={(event) => setText(event)}
           modules={modules}
           theme="snow"
-          className="w-[100%] h-96 lg:h-60 mb-20"
+          className="w-[100%] h-96 lg:h-60 mb-20 text-white"
         />
       </form>
       <div className="flex gap-3 text-white [&_button]:bg-blue-700">
         <button
+          disabled={isLoading}
           className="py-2 px-4 rounded hover:bg-blue-400"
-          onClick={sendFile}
+          onClick={() => handleSubmit()}
         >
-          Save
+          {!isLoading ? "Pulbish" : <Spinner />}
         </button>
-        <button className="py-2 px-4 rounded hover:bg-blue-400">Publish</button>
       </div>
     </div>
   );

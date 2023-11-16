@@ -7,18 +7,20 @@ import {
 } from "@heroicons/react/24/outline";
 
 const links = [
-  { label: "dashboard", icon: Squares2X2Icon, href: "" },
-  { label: "create post", icon: PencilSquareIcon, href: "" },
-  { label: "saved", icon: ArchiveBoxIcon, href: "" },
-  { label: "settings", icon: Cog8ToothIcon, href: "" },
+  { label: "dashboard", icon: Squares2X2Icon, href: "/dashboard" },
+  { label: "new blog", icon: PencilSquareIcon, href: "/newblog" },
+  { label: "saved", icon: ArchiveBoxIcon, href: "/dashboard" },
+  { label: "settings", icon: Cog8ToothIcon, href: "/dashboard" },
 ];
 
 const Index = ({ UseRef, onclick }) => {
   return (
     <div ref={UseRef} className="hidden text-sm  lg:block z-50">
-      <div className="fixed top-[70px] lg:top-auto bg-white h-[90%] p-5 w-full lg:w-[18%] rounded-s-2xl">
-        <b className="text-blue-700 text-2xl">Dashboard</b>
-        <div className="flex flex-col gap-6 capitalize hover:[&_a]:text-blue-500 pt-20">
+      <div className="fixed top-[70px] lg:top-auto bg-neutral-900 h-[90%] p-5 w-full lg:w-[18%] rounded-s-2xl">
+        <Link to={links[0].href} className="text- text-2xl font-bold1 italic">
+          DribbleStories
+        </Link>
+        <div className="flex flex-col gap-6 capitalize hover:[&_a]:text-neutral-50 pt-20">
           {links.map((link, index) => (
             <Link
               key={index}
