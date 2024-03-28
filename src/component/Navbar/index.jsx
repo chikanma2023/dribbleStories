@@ -5,11 +5,17 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
-import { NavLinks } from "./NavLinks";
 
 const Navbar = () => {
   const navRef = useRef(null);
   const [toggle, setToggle] = useState(false);
+
+  const NavLinks = [
+    { href: "", label: "find talents" },
+    { href: "", label: "inspiration" },
+    { href: "", label: "learn design" },
+    { href: "", label: "jobs" },
+  ];
 
   const toggleMenu = () => {
     if (!toggle) {
