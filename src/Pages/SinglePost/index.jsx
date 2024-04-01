@@ -51,7 +51,7 @@ const Post = () => {
           </div>
         </div>
       </div>
-      <div className="w-full my-5 leading-7 text-neutral-500 md:w-[65%]">
+      <div className="w-full my-5 leading-7 text-neutral-700 md:w-[65%]">
         <p> {selectedPost?.text}</p>
       </div>
     </div>
